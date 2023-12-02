@@ -13,6 +13,11 @@ class Category extends Model
 
     protected $fillable = ['title'];
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *

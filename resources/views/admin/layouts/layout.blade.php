@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2/css/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -131,6 +132,31 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
+                            <p>
+                                Posts
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('posts.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List of posts</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('posts.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>New post</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -209,22 +235,36 @@
 <script src="{{ asset('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/admin/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<script src="{{ asset('assets/admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/demo.js') }}"></script>
 
 <script>
-    $('.nav-sidebar a').each(function() {
-        let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
-        let link = this.href;
-
-        if (link === location) {
-            $(this).addClass('active');
-            $(this).closest('.has-treeview').addClass('menu-open');
-        }
-    });
-
     $(document).ready(function () {
+        $('.nav-sidebar a').each(function() {
+            let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+            let link = this.href;
+
+            if (link === location) {
+                $(this).addClass('active');
+                $(this).closest('.has-treeview').addClass('menu-open');
+            }
+        });
+
         bsCustomFileInput.init();
+
+        $('.summernote').summernote({
+            height: 100,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
     });
 </script>
 

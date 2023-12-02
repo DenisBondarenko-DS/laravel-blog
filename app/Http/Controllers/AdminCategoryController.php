@@ -70,6 +70,10 @@ class AdminCategoryController extends Controller
     {
         $this->authorize('delete', Category::class);
 
+        if ($category->posts->count()) {
+            return redirect()->route('categories.index')->with('error', 'Error! The category has entries');
+        }
+
         $category->delete();
 
         return to_route('categories.index')->with('success', 'Category deleted');

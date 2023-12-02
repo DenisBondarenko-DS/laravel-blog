@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminMainController;
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminTagController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');
     Route::resource('/categories', AdminCategoryController::class)->except(['show']);
     Route::resource('/tags', AdminTagController::class)->except(['show']);
+    Route::resource('/posts', AdminPostController::class)->except(['show']);
 });

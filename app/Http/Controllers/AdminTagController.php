@@ -70,6 +70,10 @@ class AdminTagController extends Controller
     {
         $this->authorize('delete', Tag::class);
 
+        if ($tag->posts->count()) {
+            return redirect()->route('tags.index')->with('error', 'Error! The tag has entries');
+        }
+
         $tag->delete();
 
         return to_route('tags.index')->with('success', 'Tag deleted');

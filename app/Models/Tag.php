@@ -13,6 +13,11 @@ class Tag extends Model
 
     protected $fillable = ['title'];
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *
