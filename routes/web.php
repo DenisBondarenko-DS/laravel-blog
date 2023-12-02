@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');
+});
