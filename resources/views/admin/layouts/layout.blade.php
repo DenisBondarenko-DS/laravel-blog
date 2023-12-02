@@ -77,6 +77,33 @@
                         </a>
                     </li>
 
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
+                            <p>
+                                Categories
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('categories.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List of categories</p>
+                                </a>
+                            </li>
+
+                            @can('create', \App\Models\Category::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('categories.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>New category</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -89,16 +116,6 @@
         <div class="container-fluid mt-2">
             <div class="row">
                 <div class="col-12">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="list-unstyled mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     @if (session()->has('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
@@ -114,7 +131,35 @@
             </div>
         </div>
 
-        @yield('content')
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>@yield('content-header')</h1>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Default box -->
+                        <div class="card">
+                            @yield('content')
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+
     </div>
     <!-- /.content-wrapper -->
 
