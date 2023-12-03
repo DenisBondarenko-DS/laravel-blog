@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminTagController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middle
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');
+    Route::resource('/users', AdminUserController::class)->except(['create', 'store', 'show']);
     Route::resource('/categories', AdminCategoryController::class)->except(['show']);
     Route::resource('/tags', AdminTagController::class)->except(['show']);
     Route::resource('/posts', AdminPostController::class)->except(['show']);

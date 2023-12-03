@@ -78,6 +78,15 @@
                         </a>
                     </li>
 
+                    @can('viewAny', \App\Models\User::class)
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Users</p>
+                            </a>
+                        </li>
+                    @endcan
+
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>
@@ -107,7 +116,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-archive"></i>
+                            <i class="nav-icon fas fa-tags"></i>
                             <p>
                                 Tags
                                 <i class="right fas fa-angle-left"></i>
@@ -134,7 +143,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-archive"></i>
+                            <i class="nav-icon fas fa-edit"></i>
                             <p>
                                 Posts
                                 <i class="right fas fa-angle-left"></i>
