@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminTagController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.single');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'registerForm'])->name('register.form');
