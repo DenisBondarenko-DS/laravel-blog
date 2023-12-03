@@ -1,6 +1,6 @@
 <div class="sidebar">
     <div class="widget">
-        <form class="form-inline mr-auto" method="get" action="#">
+        <form class="form-inline mr-auto" method="get" action="{{ route('search') }}">
             <input name="s" class="form-control @error('s') is-invalid @enderror" type="text" placeholder="Search" required>
             <button class="btn btn-outline-success btn-search" type="submit">Search</button>
         </form>
