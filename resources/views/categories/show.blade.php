@@ -1,6 +1,26 @@
-@extends('layouts.layout')
+@extends('layouts.category_layout')
 
-@section('title', 'Laravel Blog | Home')
+@section('title', 'Laravel Blog | ' . $category->title)
+
+@section('page-title')
+
+    <div class="page-title db">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <h2>{{ $category->title }}</h2>
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item active">{{ $category->title }}</li>
+                    </ol>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end page-title -->
+
+@endsection
 
 @section('content')
 
@@ -23,8 +43,8 @@
                         <h4><a href="{{ route('posts.single', ['slug' => $post->slug]) }}" title="">{{ $post->title }}</a></h4>
                         <p>{!! $post->description !!}</p>
                         <small>
-                            <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}" title="">
-                                {{ $post->category->title }}
+                            <a href="{{ route('categories.single', ['slug' => $category->slug]) }}" title="">
+                                {{ $category->title }}
                             </a>
                         </small>
                         <small>{{ $post->getPostDate() }}</small>

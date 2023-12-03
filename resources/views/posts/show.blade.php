@@ -9,7 +9,7 @@
             <ol class="breadcrumb hidden-xs-down">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item">
-                    <a href="#">
+                    <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">
                         {{ $post->category->title }}
                     </a>
                 </li>
@@ -17,7 +17,7 @@
             </ol>
 
             <span class="color-yellow">
-                <a href="#" title="">
+                <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}" title="">
                     {{ $post->category->title }}
                 </a>
             </span>
