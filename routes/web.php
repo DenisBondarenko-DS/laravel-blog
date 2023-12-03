@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -23,12 +24,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.single');
-Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
-Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
-Route::get('/search', [SearchController::class, 'index'])->name('search');
-
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'registerForm'])->name('register.form');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -37,6 +32,18 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/settings', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/settings', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.single');
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
+Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');

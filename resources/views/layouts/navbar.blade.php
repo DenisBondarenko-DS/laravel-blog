@@ -31,7 +31,7 @@
                 @auth
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ auth()->user()->name }}</a>
+                            <a class="nav-link" href="{{ route('profile.show') }}">{{ auth()->user()->name }}</a>
                         </li>
 
                         @if(auth()->user()->isAdmin() || auth()->user()->isSuperAdmin())

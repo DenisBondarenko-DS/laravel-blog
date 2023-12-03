@@ -25,7 +25,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'avatar'
     ];
 
     /**
@@ -81,6 +82,15 @@ class User extends Authenticatable
         } else {
             return 'User';
         }
+    }
+
+    public function getImage()
+    {
+        if (!$this->avatar) {
+            return asset('no-user-image.jpg');
+        }
+
+        return asset("storage/$this->avatar");
     }
 
     public static function getUsersByFilter($data)
