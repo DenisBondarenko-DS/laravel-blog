@@ -1,42 +1,69 @@
 @extends('admin.layouts.layout')
 
-@section('content')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Main</h1>
+@section('content-header', 'Dashboard')
+
+@section('dashboard')
+
+    @can('viewAny', \App\Models\User::class)
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ $usersCount }}</h3>
+                    <p>User Registrations</p>
                 </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Title</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
+                <div class="icon">
+                    <i class="nav-icon fas fa-users"></i>
                 </div>
+                <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <div class="card-body">
-                Start creating your amazing application!
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
-        <!-- /.card -->
+        <!-- ./col -->
+    @endcan
 
-    </section>
-    <!-- /.content -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{ $categoriesCount }}</h3>
+                <p>Categories</p>
+            </div>
+            <div class="icon">
+                <i class="nav-icon fas fa-archive"></i>
+            </div>
+            <a href="{{ route('categories.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{ $tagsCount }}</h3>
+                <p>Tags</p>
+            </div>
+            <div class="icon">
+                <i class="nav-icon fas fa-tags"></i>
+            </div>
+            <a href="{{ route('tags.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>{{ $postsCount }}</h3>
+                <p>Posts</p>
+            </div>
+            <div class="icon">
+                <i class="nav-icon fas fa-edit"></i>
+            </div>
+            <a href="{{ route('posts.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+
 @endsection

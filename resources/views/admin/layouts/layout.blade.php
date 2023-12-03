@@ -208,6 +208,9 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
+
+                    @yield('dashboard')
+
                     <div class="col-12">
 
                         <!-- Default box -->
