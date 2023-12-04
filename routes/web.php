@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminTagController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -44,6 +45,9 @@ Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.sing
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
 Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+Route::post('{post}/comment', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');

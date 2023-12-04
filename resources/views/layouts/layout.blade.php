@@ -85,5 +85,7 @@
 <script src="{{ asset('assets/front/js/animate.js') }}"></script>
 <script src="{{ asset('assets/front/js/custom.js') }}"></script>
 
+@yield('script')
+
 </body>
 </html>

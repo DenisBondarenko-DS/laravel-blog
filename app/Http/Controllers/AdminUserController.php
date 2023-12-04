@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Http\Requests\Admin\User\IndexRequest;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,7 @@ class AdminUserController extends Controller
     {
         $this->authorize('delete', User::class);
 
+        Comment::query()->where('user_id', $user->id)->delete();
         $user->delete();
 
         return to_route('users.index')->with('success', 'User deleted');

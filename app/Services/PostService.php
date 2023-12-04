@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,7 +25,10 @@ class PostService
     public function update($data, Post $post)
     {
         if (isset($data['thumbnail'])) {
-            Storage::delete($post->thumbnail);
+            if ($post->thumbnail != null) {
+                Storage::delete($post->thumbnail);
+            }
+
             $data['thumbnail'] = Storage::put('images', $data['thumbnail']);
         }
 
@@ -37,6 +41,7 @@ class PostService
     public function delete(Post $post)
     {
         $post->tags()->sync([]);
+        Comment::query()->where('post_id', $post->id)->delete();
 
         if ($post->thumbnail) {
             Storage::delete($post->thumbnail);
