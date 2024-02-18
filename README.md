@@ -1,5 +1,10 @@
 # Laravel Blog
 
+- Developed blog functionality using PHP, Laravel and MySQL
+- Implemented user authentication and authorization features, role model
+- Created an admin panel for content management
+- Implemented CRUD functionality for categories, tags, posts, comments
+
 ## Some screenshots
 
 You can find some screenshots of the application on: [https://imgur.com/a/Z3VySQj](https://imgur.com/a/Z3VySQj)
