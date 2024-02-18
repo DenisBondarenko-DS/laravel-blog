@@ -1,4 +1,4 @@
-@extends('layouts.category_layout')
+@extends('layouts.category-layout')
 
 @section('title', 'Laravel Blog | Search')
 
