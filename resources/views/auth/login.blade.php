@@ -61,7 +61,7 @@
                 </div>
             </form>
 
-            <a href="{{ route('register.form') }}" class="text-center">Sign up</a>
+            <a href="{{ route('register_form') }}" class="text-center">Sign up</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

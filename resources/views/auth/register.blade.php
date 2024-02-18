@@ -20,7 +20,7 @@
     <div class="card">
         <div class="card-body register-card-body">
 
-            <form action="#{{--{{ route('register.store') }}--}}" method="post">
+            <form action="{{ route('register') }}" method="post">
                 @csrf
                 <div class="input-group">
                     <input type="text" name="name" class="form-control" placeholder="Full name" value="{{ old('name') }}">
@@ -76,7 +76,7 @@
                 </div>
             </form>
 
-            <a href="{{ route('login.form') }}" class="text-center">Sign in</a>
+            <a href="{{ route('login_form') }}" class="text-center">Sign in</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

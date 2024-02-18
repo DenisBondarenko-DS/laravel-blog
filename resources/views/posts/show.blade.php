@@ -57,7 +57,7 @@
                 <h4 class="small-title">Leave a Reply</h4>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form method="post" action="{{ route('comment.store', ['post' => $post->id]) }}" class="form-wrapper">
+                        <form method="post" action="{{ route('posts.comments.store', ['post' => $post->id]) }}" class="form-wrapper">
                             @csrf
                             <textarea class="form-control mb-0" name="text" placeholder="Your comment"></textarea>
                             @error('text')
@@ -70,7 +70,7 @@
             </div>
         @else
             <div>
-                <a href="{{ route('login.form') }}">Log in to your account</a> to leave a comment!
+                <a href="{{ route('login_form') }}">Log in to your account</a> to leave a comment!
             </div>
         @endif
 

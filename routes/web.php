@@ -26,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [AuthController::class, 'registerForm'])->name('register.form');
+    Route::get('/register', [AuthController::class, 'registerForm'])->name('register_form');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::get('/login', [AuthController::class, 'loginForm'])->name('login.form');
+    Route::get('/login', [AuthController::class, 'loginForm'])->name('login_form');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
@@ -41,13 +41,13 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.single');
-Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
-Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
+Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.single');
+Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('categories.single');
+Route::get('/tags/{slug}', [TagController::class, 'show'])->name('tags.single');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
-Route::post('{post}/comment', [CommentController::class, 'store'])->name('comment.store');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+Route::post('/posts/{post}/comment', [CommentController::class, 'store'])->name('posts.comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [AdminMainController::class, 'index'])->name('admin.index');

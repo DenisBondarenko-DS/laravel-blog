@@ -19,10 +19,10 @@
                 @guest
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login.form') }}">Sign in</a>
+                            <a class="nav-link" href="{{ route('login_form') }}">Sign in</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register.form') }}">Register</a>
+                            <a class="nav-link" href="{{ route('register_form') }}">Register</a>
                         </li>
                     </ul>
 
