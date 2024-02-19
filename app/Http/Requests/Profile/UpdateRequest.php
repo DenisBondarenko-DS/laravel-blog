@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique(User::class)->ignore(Auth::user()->id)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore(Auth::user()->id)],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
             'avatar' => ['nullable', 'image']
         ];
