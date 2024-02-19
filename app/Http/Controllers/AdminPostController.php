@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class AdminPostController extends Controller
 {
-    public function __construct (
+    public function __construct(
         private PostService $postService
     ) { }
 

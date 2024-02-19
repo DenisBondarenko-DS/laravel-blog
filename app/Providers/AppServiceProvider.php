@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFour();
 
-        view()->composer('layouts.sidebar', function($view) {
+        view()->composer('layouts.sidebar', function ($view) {
             if (Cache::has('categories')) {
                 $categories = Cache::get('categories');
             } else {

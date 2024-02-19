@@ -14,30 +14,21 @@ class User extends Authenticatable
 
     const ROLE_USER = 1;
     const ROLE_ADMIN = 2;
-    const ROLE_SUPERADMIN = 3;
+    const ROLE_SUPER_ADMIN = 3;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-        'avatar'
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role', 'avatar'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -59,7 +50,7 @@ class User extends Authenticatable
         return [
             self::ROLE_USER => 'User',
             self::ROLE_ADMIN => 'Admin',
-            self::ROLE_SUPERADMIN => 'Super Admin',
+            self::ROLE_SUPER_ADMIN => 'Super Admin',
         ];
     }
 
@@ -75,7 +66,7 @@ class User extends Authenticatable
 
     public function isSuperAdmin()
     {
-        return $this->role == self::ROLE_SUPERADMIN;
+        return $this->role == self::ROLE_SUPER_ADMIN;
     }
 
     public function getRoleName()
