@@ -31,7 +31,7 @@
                 @foreach ($posts as $post)
                     <div class="blog-box wow fadeIn">
                         <div class="post-media">
-                            <a href="{{ route('posts.single', ['slug' => $post->slug]) }}" title="">
+                            <a href="{{ route('posts.single', ['post' => $post->slug]) }}" title="">
                                 <img src="{{ $post->getImage() }}" alt="" class="img-fluid">
                                 <div class="hovereffect">
                                     <span></span>
@@ -42,10 +42,10 @@
                         <!-- end media -->
 
                         <div class="blog-meta big-meta text-center">
-                            <h4><a href="{{ route('posts.single', ['slug' => $post->slug]) }}" title="">{{ $post->title }}</a></h4>
+                            <h4><a href="{{ route('posts.single', ['post' => $post->slug]) }}" title="">{{ $post->title }}</a></h4>
                             <p>{!! $post->description !!}</p>
                             <small>
-                                <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}" title="">
+                                <a href="{{ route('categories.single', ['category' => $post->category->slug]) }}" title="">
                                     {{ $post->category->title }}
                                 </a>
                             </small>

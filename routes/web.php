@@ -41,9 +41,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.single');
-Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('categories.single');
-Route::get('/tags/{slug}', [TagController::class, 'show'])->name('tags.single');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.single');
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.single');
+Route::get('/tags/{tag:slug}', [TagController::class, 'show'])->name('tags.single');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::post('/posts/{post}/comment', [CommentController::class, 'store'])->name('posts.comments.store');

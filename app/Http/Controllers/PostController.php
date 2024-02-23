@@ -15,9 +15,8 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show($slug)
+    public function show(Post $post)
     {
-        $post = Post::query()->where('slug', $slug)->firstOrFail();
         $comments = Comment::query()->where('post_id', $post->id)->latest()->get();
 
         $post->views += 1;

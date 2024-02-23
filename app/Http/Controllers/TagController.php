@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function show($slug)
+    public function show(Tag $tag)
     {
-        $tag = Tag::query()->where('slug', $slug)->firstOrFail();
         $posts = $tag->posts()->with('category')->latest()->paginate(3);
 
         return view('tags.show', compact('tag', 'posts'));

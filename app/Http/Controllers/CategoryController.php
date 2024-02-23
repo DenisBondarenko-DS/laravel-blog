@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function show($slug)
+    public function show(Category $category)
     {
-        $category = Category::query()->where('slug', $slug)->firstOrFail();
         $posts = $category->posts()->latest()->paginate(3);
 
         return view('categories.show', compact('category', 'posts'));

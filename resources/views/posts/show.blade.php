@@ -9,7 +9,7 @@
             <ol class="breadcrumb hidden-xs-down">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">
+                    <a href="{{ route('categories.single', ['category' => $post->category->slug]) }}">
                         {{ $post->category->title }}
                     </a>
                 </li>
@@ -17,7 +17,7 @@
             </ol>
 
             <span class="color-yellow">
-                <a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}" title="">
+                <a href="{{ route('categories.single', ['category' => $post->category->slug]) }}" title="">
                     {{ $post->category->title }}
                 </a>
             </span>
@@ -44,7 +44,7 @@
                 <div class="tag-cloud-single">
                     <span>Tags</span>
                     @foreach ($post->tags as $tag)
-                        <small><a href="{{ route('tags.single', ['slug' => $tag->slug]) }}" title="">{{ $tag->title }}</a></small>
+                        <small><a href="{{ route('tags.single', ['tag' => $tag->slug]) }}" title="">{{ $tag->title }}</a></small>
                     @endforeach
                 </div><!-- end meta -->
             @endif
