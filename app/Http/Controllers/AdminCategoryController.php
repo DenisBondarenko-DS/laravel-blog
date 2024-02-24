@@ -36,7 +36,7 @@ class AdminCategoryController extends Controller
     {
         $this->authorize('create', Category::class);
 
-        Category::query()->create($request->all());
+        Category::query()->create($request->validated());
 
         return to_route('categories.index')->with('success', 'Category added');
     }
@@ -58,7 +58,7 @@ class AdminCategoryController extends Controller
     {
         $this->authorize('update', Category::class);
 
-        $category->update($request->all());
+        $category->update($request->validated());
 
         return to_route('categories.index')->with('success', 'Changes saved');
     }

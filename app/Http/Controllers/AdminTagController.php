@@ -36,7 +36,7 @@ class AdminTagController extends Controller
     {
         $this->authorize('create', Tag::class);
 
-        Tag::query()->create($request->all());
+        Tag::query()->create($request->validated());
 
         return to_route('tags.index')->with('success', 'Tag added');
     }
@@ -58,7 +58,7 @@ class AdminTagController extends Controller
     {
         $this->authorize('update', Tag::class);
 
-        $tag->update($request->all());
+        $tag->update($request->validated());
 
         return to_route('tags.index')->with('success', 'Changes saved');
     }

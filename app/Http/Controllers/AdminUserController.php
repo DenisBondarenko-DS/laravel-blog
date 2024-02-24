@@ -39,7 +39,7 @@ class AdminUserController extends Controller
     {
         $this->authorize('update', User::class);
 
-        $user->update($request->all());
+        $user->update($request->validated());
 
         return to_route('users.index')->with('success', 'Changes saved');
     }
