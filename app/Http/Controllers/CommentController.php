@@ -11,11 +11,13 @@ class CommentController extends Controller
 {
     public function store(StoreRequest $request, Post $post)
     {
-        $data = $request->validated();
-        $data['user_id'] = auth()->user()->id;
-        $data['post_id'] = $post->id;
-
-        Comment::query()->create($data);
+        Comment::query()->create(
+            attributes: [
+                ...$request->validated(),
+                'user_id' => auth()->user()->id,
+                'post_id' => $post->id
+            ]
+        );
 
         return redirect()->back();
     }
