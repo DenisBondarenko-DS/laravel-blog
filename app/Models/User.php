@@ -89,20 +89,18 @@ class User extends Authenticatable
         return asset("storage/$this->avatar");
     }
 
-    public static function getUsersByFilter($data)
+    public static function scopeFiltered($query, $data)
     {
-        $userQuery = User::query();
-
         if (isset($data['name'])) {
-            $userQuery->where('name', 'like', "%{$data['name']}%");
+            $query->where('name', 'like', "%{$data['name']}%");
         }
         if (isset($data['email'])) {
-            $userQuery->where('email', 'like', "%{$data['email']}%");
+            $query->where('email', 'like', "%{$data['email']}%");
         }
         if (isset($data['role']) && $data['role'] != 'all') {
-            $userQuery->where('role', $data['role']);
+            $query->where('role', $data['role']);
         }
 
-        return $userQuery->where('id', '!=', auth()->user()->id)->latest()->paginate(10);
+        return $query->where('id', '!=', auth()->user()->id);
     }
 }

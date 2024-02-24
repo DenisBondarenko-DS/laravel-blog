@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        $users = User::getUsersByFilter($request->validated());
+        $users = User::query()->filtered($request->validated())->latest()->paginate(5);
 
         return view('admin.users.index', compact('users'));
     }
