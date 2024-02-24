@@ -21,13 +21,7 @@ class AdminPostController extends Controller
      */
     public function index()
     {
-        $postQuery = Post::query();
-
-        if (auth()->user()->isAdmin()) {
-            $postQuery->where('user_id', auth()->user()->id);
-        }
-
-        $posts = $postQuery->with('category', 'tags')->latest()->paginate(5);
+        $posts = $this->postService->getPostsByUserRole();
         $categories = Category::query()->get(['id', 'title']);
 
         return view('admin.posts.index', compact('posts', 'categories'));

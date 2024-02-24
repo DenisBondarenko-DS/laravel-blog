@@ -4,10 +4,21 @@ namespace App\Services;
 
 use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 class PostService
 {
+    public function getPostsByUserRole()
+    {
+        return Post::query()->with('category', 'tags')
+            ->when(auth()->user()->isAdmin(), function (Builder $query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->latest()
+            ->paginate(5);
+    }
+
     public function store($data)
     {
         $data['user_id'] = auth()->user()->id;
