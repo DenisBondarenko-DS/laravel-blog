@@ -52,6 +52,13 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
+                <div class="form-group mt-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="remember" class="custom-control-input" id="remember" @checked(old('remember'))>
+                        <label class="custom-control-label font-weight-normal" for="remember">Remember me</label>
+                    </div>
+                </div>
+
                 <div class="row mt-3">
                     <!-- /.col -->
                     <div class="col-12">

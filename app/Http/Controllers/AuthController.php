@@ -36,14 +36,18 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ])) {
+        $credentials = $request->only('email', 'password');
+        $remember = $request->filled('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+
             return to_route('home');
         }
 
-        return redirect()->back()->with('error', 'Wrong login or password');
+        return back()->withErrors([
+            'email' => 'These credentials do not match our records',
+        ])->onlyInput('email');
     }
 
     public function logout()
