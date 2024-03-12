@@ -32,4 +32,11 @@ class UpdateRequest extends FormRequest
             'avatar' => ['nullable', 'image']
         ];
     }
+
+    protected function prepareForValidation(): void
+    {
+        if ($this->password == null) {
+            $this->request->remove('password');
+        }
+    }
 }

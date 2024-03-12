@@ -11,8 +11,6 @@ class ProfileService
     {
         if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
-        } else {
-            $data['password'] = auth()->user()->password;
         }
 
         if (isset($data['avatar'])) {
