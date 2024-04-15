@@ -9,7 +9,11 @@
 </div>
 
 <div class="card-body">
-    <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Add post</a>
+    @if (count($categories))
+        <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Add post</a>
+    @else
+        <p>To create a post there must be at least one category</p>
+    @endif
 
     @if (count($posts))
         <div class="table-responsive">
