@@ -5,17 +5,21 @@
                 <div class="widget">
                     <h2 class="widget-title">Recent Posts</h2>
                     <div class="blog-list-widget">
-                        <div class="list-group">
-                            @foreach($recent_posts as $post)
-                                <a href="{{ route('posts.single', ['post' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="w-100 justify-content-between">
-                                        <img src="{{ $post->getImage() }}" alt="" class="img-fluid float-left">
-                                        <h5 class="mb-1">{{ $post->title }}</h5>
-                                        <small>{{ $post->getPostDate() }}</small>
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
+                        @if (count($recent_posts))
+                            <div class="list-group">
+                                @foreach($recent_posts as $post)
+                                    <a href="{{ route('posts.single', ['post' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <img src="{{ $post->getImage() }}" alt="" class="img-fluid float-left">
+                                            <h5 class="mb-1">{{ $post->title }}</h5>
+                                            <small>{{ $post->getPostDate() }}</small>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @else
+                            <p>There are no posts</p>
+                        @endif
                     </div><!-- end blog-list -->
                 </div><!-- end widget -->
             </div><!-- end col -->
@@ -24,17 +28,21 @@
                 <div class="widget">
                     <h2 class="widget-title">Popular Posts</h2>
                     <div class="blog-list-widget">
-                        <div class="list-group">
-                            @foreach($popular_posts as $post)
-                                <a href="{{ route('posts.single', ['post' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="w-100 justify-content-between">
-                                        <img src="{{ $post->getImage() }}" alt="" class="img-fluid float-left">
-                                        <h5 class="mb-1">{{ $post->title }}</h5>
-                                        <small><i class="fa fa-eye"></i> {{ $post->views }}</small>
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
+                        @if (count($popular_posts))
+                            <div class="list-group">
+                                @foreach($popular_posts as $post)
+                                    <a href="{{ route('posts.single', ['post' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <img src="{{ $post->getImage() }}" alt="" class="img-fluid float-left">
+                                            <h5 class="mb-1">{{ $post->title }}</h5>
+                                            <small><i class="fa fa-eye"></i> {{ $post->views }}</small>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @else
+                            <p>There are no posts</p>
+                        @endif
                     </div><!-- end blog-list -->
                 </div><!-- end widget -->
             </div><!-- end col -->
@@ -43,15 +51,19 @@
                 <div class="widget">
                     <h2 class="widget-title">Categories</h2>
                     <div class="link-widget">
-                        <ul>
-                            @foreach($categories as $category)
-                                <li>
-                                    <a href="{{ route('categories.single', ['category' => $category->slug]) }}">
-                                        {{ $category->title }} <span>({{ $category->posts_count }})</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @if (count($categories))
+                            <ul>
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="{{ route('categories.single', ['category' => $category->slug]) }}">
+                                            {{ $category->title }} <span>({{ $category->posts_count }})</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>There are no categories</p>
+                        @endif
                     </div><!-- end link-widget -->
                 </div><!-- end widget -->
             </div><!-- end col -->
