@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class PostService
 {
@@ -19,45 +18,53 @@ class PostService
             ->paginate(5);
     }
 
-    public function store($data)
+    public function store(array $data)
     {
-        $data['user_id'] = auth()->user()->id;
+        try {
+            DB::beginTransaction();
 
-        if (isset($data['thumbnail'])) {
-            $data['thumbnail'] = Storage::put('images', $data['thumbnail']);
+            $post = Post::query()->create($data);
+            $post->syncTags($data);
+            $post->storeThumbnail($data);
+
+            DB::commit();
+        } catch (\Exception) {
+            DB::rollBack();
+            abort(404);
         }
-
-        $post = Post::query()->create($data);
-
-        $tags = $data['tags'] ?? null;
-        $post->tags()->sync($tags);
     }
 
-    public function update($data, Post $post)
+    public function update(array $data, Post $post)
     {
-        if (isset($data['thumbnail'])) {
-            if ($post->thumbnail != null) {
-                Storage::delete($post->thumbnail);
-            }
+        try {
+            DB::beginTransaction();
 
-            $data['thumbnail'] = Storage::put('images', $data['thumbnail']);
+            $post->update($data);
+            $post->syncTags($data);
+            $post->updateThumbnail($data);
+
+            DB::commit();
+        } catch (\Exception) {
+            DB::rollBack();
+            abort(500);
         }
-
-        $post->update($data);
-
-        $tags = $data['tags'] ?? null;
-        $post->tags()->sync($tags);
     }
 
     public function delete(Post $post)
     {
-        $post->tags()->sync([]);
-        Comment::query()->where('post_id', $post->id)->delete();
+        try {
+            DB::beginTransaction();
 
-        if ($post->thumbnail) {
-            Storage::delete($post->thumbnail);
+            $post->deleteTags();
+            $post->deleteThumbnail();
+            $post->comments()->delete();
+
+            $post->delete();
+
+            DB::commit();
+        } catch (\Exception) {
+            DB::rollBack();
+            abort(500);
         }
-
-        $post->delete();
     }
 }
