@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 class AdminPostController extends Controller
 {
     public function __construct(
-        private PostService $postService
-    ) { }
+        private readonly PostService $postService
+    ) {}
 
     /**
      * Display a listing of the resource.
