@@ -29,7 +29,15 @@ class StoreRequest extends FormRequest
             'category_id' => ['required', 'integer', Rule::exists('categories', 'id')],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['integer', Rule::exists('tags', 'id')],
-            'thumbnail' => ['nullable', 'image']
+            'thumbnail' => ['nullable', 'image'],
+            'user_id' => ['required', Rule::exists('users', 'id')]
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+           'user_id' => auth()->id()
+        ]);
     }
 }
