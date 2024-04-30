@@ -19,6 +19,7 @@ services:
     container_name: laravel-blog_app
     depends_on:
       - db
+      - redis
 
   db:
     image: mysql:latest
@@ -32,6 +33,17 @@ services:
       - "8101:3306"
     container_name: laravel-blog_db
 
+  redis:
+    image: redis:latest
+    restart: always
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    container_name: laravel-blog_redis
+
 volumes:
   db-data:
+    driver: local
+  redis-data:
     driver: local
