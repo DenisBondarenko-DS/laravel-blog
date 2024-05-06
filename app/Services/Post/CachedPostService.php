@@ -47,6 +47,13 @@ class CachedPostService implements PostServiceInterface
         });
     }
 
+    public function getPostComments(Post $post)
+    {
+        return Cache::remember(CacheKeys::postComments($post), self::CACHE_TTL, function () use ($post) {
+            return $this->base->getPostComments($post);
+        });
+    }
+
     public function incrementPostViews(Post $post): void
     {
         $post->views += 1;

@@ -20,7 +20,7 @@ class PostController extends Controller
     public function show(string $slug)
     {
         $post = $this->postService->getPostBySlug($slug);
-        $comments = $post->comments()->latest()->get();
+        $comments = $this->postService->getPostComments($post);
 
         $this->postService->incrementPostViews($post);
 

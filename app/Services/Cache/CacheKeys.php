@@ -2,6 +2,8 @@
 
 namespace App\Services\Cache;
 
+use App\Models\Post;
+
 final class CacheKeys
 {
     public static function topPosts(): string
@@ -22,5 +24,10 @@ final class CacheKeys
     public static function postBySlug(string $slug): string
     {
         return 'posts:' . $slug;
+    }
+
+    public static function postComments(Post $post): string
+    {
+        return 'post_comments_' . $post->id;
     }
 }

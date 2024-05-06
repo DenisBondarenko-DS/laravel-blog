@@ -33,6 +33,11 @@ class PostService implements PostServiceInterface
         return Post::where('slug', $slug)->with('category')->firstOrFail();
     }
 
+    public function getPostComments(Post $post)
+    {
+        return $post->comments()->latest()->get();
+    }
+
     public function incrementPostViews(Post $post): void
     {
         $post->views += 1;

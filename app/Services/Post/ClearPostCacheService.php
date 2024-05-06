@@ -52,4 +52,9 @@ class ClearPostCacheService
     {
         Cache::forget(CacheKeys::postBySlug($post->slug));
     }
+
+    public function clearPostCommentsCache(Post $post): void
+    {
+        Cache::forget(CacheKeys::postComments($post));
+    }
 }

@@ -31,5 +31,6 @@ class PostObserver
         $this->cacheService->checkAndClearRecentPostsCache($post);
         $this->cacheService->checkAndClearTopPostsCache($post);
         $this->cacheService->clearPostPaginationCache();
+        $this->cacheService->clearPostCommentsCache($post);
     }
 }

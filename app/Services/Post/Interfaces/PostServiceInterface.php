@@ -14,5 +14,7 @@ interface PostServiceInterface
 
     public function getPostBySlug($slug): Post;
 
+    public function getPostComments(Post $post);
+
     public function incrementPostViews(Post $post): void;
 }
