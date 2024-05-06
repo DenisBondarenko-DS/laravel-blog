@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Services\Post\Interfaces\PostServiceInterface;
 
 class PostController extends Controller
 {
+    public function __construct(
+        private readonly PostServiceInterface $postService
+    ) {}
+
     public function index()
     {
-        $posts = Post::query()->with('category')->latest()->paginate(3);
+        $posts = $this->postService->getPostsWithPagination();
 
         return view('posts.index', compact('posts'));
     }
 
-    public function show(Post $post)
+    public function show(string $slug)
     {
-        $comments = Comment::query()->where('post_id', $post->id)->latest()->get();
+        $post = $this->postService->getPostBySlug($slug);
+        $comments = $post->comments()->latest()->get();
 
-        $post->views += 1;
-        $post->update();
+        $this->postService->incrementPostViews($post);
 
         return view('posts.show', compact('post', 'comments'));
     }
