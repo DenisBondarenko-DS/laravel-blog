@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Profile\UpdateRequest;
-use App\Services\ProfileService;
-use Illuminate\Http\Request;
+use App\Services\Profile\ProfileService;
 
 class ProfileController extends Controller
 {

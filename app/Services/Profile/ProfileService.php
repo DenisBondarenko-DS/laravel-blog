@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Profile;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;

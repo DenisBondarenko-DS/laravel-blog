@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Post;
 
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
-class PostService
+class AdminPostService
 {
     public function getPostsByUserRole()
     {

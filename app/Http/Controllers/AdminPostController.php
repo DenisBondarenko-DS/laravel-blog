@@ -7,13 +7,12 @@ use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use App\Services\PostService;
-use Illuminate\Http\Request;
+use App\Services\Post\AdminPostService;
 
 class AdminPostController extends Controller
 {
     public function __construct(
-        private readonly PostService $postService
+        private readonly AdminPostService $postService
     ) {}
 
     /**
