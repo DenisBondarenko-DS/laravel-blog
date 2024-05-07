@@ -1,9 +1,10 @@
 # Laravel Blog
 
-- Developed blog functionality using PHP, Laravel and MySQL
+- Developed blog functionality using PHP, Laravel and MySQL, Redis
 - Implemented user authentication and authorization features, role model
 - Created an admin panel for content management
 - Implemented CRUD functionality for categories, tags, posts, comments
+- Data caching
 
 ## Some screenshots
 
