@@ -4,6 +4,7 @@
 - Implemented user authentication and authorization features, role model
 - Created an admin panel for content management
 - Implemented CRUD functionality for categories, tags, posts, comments
+- Sending email notifications using queue mechanism
 - Data caching
 
 ## Some screenshots
@@ -21,6 +22,7 @@ $ cp .env.example .env
 $ composer install
 $ php artisan key:generate
 $ php artisan storage:link
+$ php artisan queue:work --queue=emails
 ```
 
 ## Before starting
