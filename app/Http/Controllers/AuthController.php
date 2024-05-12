@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Jobs\Queue;
+use App\Jobs\SendEmailNewUserJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +27,8 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        SendEmailNewUserJob::dispatch($user)->onQueue(Queue::EMAILS);
 
         return to_route('home');
     }
