@@ -27,7 +27,7 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->latest();
     }
 
     /**
@@ -42,6 +42,11 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function totalComments()
+    {
+        return $this->comments()->count();
     }
 
     public function getImage()
