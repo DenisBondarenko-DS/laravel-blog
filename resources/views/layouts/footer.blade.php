@@ -8,7 +8,7 @@
                         @if (count($recent_posts))
                             <div class="list-group">
                                 @foreach($recent_posts as $post)
-                                    <a href="{{ route('posts.single', ['post' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <a href="{{ route('posts.single', ['slug' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="w-100 justify-content-between">
                                             <img src="{{ $post->getImage() }}" alt="" class="img-fluid float-left">
                                             <h5 class="mb-1">{{ $post->title }}</h5>
@@ -31,7 +31,7 @@
                         @if (count($popular_posts))
                             <div class="list-group">
                                 @foreach($popular_posts as $post)
-                                    <a href="{{ route('posts.single', ['post' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <a href="{{ route('posts.single', ['slug' => $post->slug]) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="w-100 justify-content-between">
                                             <img src="{{ $post->getImage() }}" alt="" class="img-fluid float-left">
                                             <h5 class="mb-1">{{ $post->title }}</h5>
