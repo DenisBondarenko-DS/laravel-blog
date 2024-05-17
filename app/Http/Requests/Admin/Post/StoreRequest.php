@@ -29,7 +29,7 @@ class StoreRequest extends FormRequest
             'category_id' => ['required', 'integer', Rule::exists('categories', 'id')],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['integer', Rule::exists('tags', 'id')],
-            'thumbnail' => ['nullable', 'image'],
+            'thumbnail' => ['nullable', 'image', 'max:4096'],
             'user_id' => ['required', Rule::exists('users', 'id')]
         ];
     }
